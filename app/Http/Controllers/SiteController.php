@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Noticia;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SiteController extends Controller
@@ -44,7 +45,7 @@ class SiteController extends Controller
         Usuario::create([
         'nome' =>  $request['nome'],
         'email' =>  $request['usuario'],
-        'senha' =>  md5($request['senha']),
+        'senha' =>  bcrypt($request['senha']),
         'isAdmin' => 0,
         ]);
 
@@ -68,7 +69,17 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $credentials = [
+            'email' => $request['usuario'],
+            'senha' => $request['senha'],
+        ];
+        if(Auth::attempt($credentials)){
+            echo "funciona";
+        }else{
+            echo 'n funciona';
+        }; 
+
     }
 
     /**

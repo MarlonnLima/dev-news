@@ -14,8 +14,4 @@ class Usuario extends Model
     protected $table = "usuarios";
     protected $fillable = ['nome', 'email', 'senha', 'isAdmin'];
 
-    public function setPasswordAttribute($value)
-{
-   $this->attributes['password'] = bcrypt($value);
-}
 }
