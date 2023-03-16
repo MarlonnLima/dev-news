@@ -1,7 +1,8 @@
 @extends('layouts.layoutWithoutBanner')
 @section('title', 'Cadastre-se')
 @section('conteudo')
-<form class ="formulario" action="php_action/register.php" method = "POST" enctype = "multipart/form-data">
+<form class ="formulario" action="{{route('site.criarUsuario')}}" method = "POST" enctype = "multipart/form-data">
+   @csrf
     <div class ="input-container">
     <h1 class = "titulo">Cadastrar</h1>
         <div>

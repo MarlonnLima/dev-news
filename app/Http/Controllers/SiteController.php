@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiteController extends Controller
 {
@@ -37,6 +39,17 @@ class SiteController extends Controller
         return view('site.register');
     }
 
+    public function criarUsuario(Request $request)
+    {
+        Usuario::create([
+        'nome' =>  $request['nome'],
+        'email' =>  $request['usuario'],
+        'senha' =>  md5($request['senha']),
+        'isAdmin' => 0,
+        ]);
+
+        return redirect()->route('site.login');
+    }
     /**
      * Show the form for creating a new resource.
      *

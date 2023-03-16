@@ -18,8 +18,9 @@ Route::resource('/', SiteController::class)->names('site');
 
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
-
 Route::get('/login', [SiteController::class, 'login'])->name('site.login');
+
+Route::post('/criarusuario', [SiteController::class, 'criarUsuario'])->name('site.criarUsuario');
 
 Route::get('/cadastrar', [SiteController::class, 'cadastrar'])->name('site.cadastrar');
 
