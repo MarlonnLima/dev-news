@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,10 +43,10 @@ class SiteController extends Controller
 
     public function criarUsuario(Request $request)
     {
-        Usuario::create([
-        'nome' =>  $request['nome'],
-        'email' =>  $request['usuario'],
-        'senha' =>  bcrypt($request['senha']),
+        User::create([
+        'name' =>  $request['name'],
+        'email' =>  $request['email'],
+        'password' =>  bcrypt($request['password']),
         'isAdmin' => 0,
         ]);
 
@@ -69,17 +70,16 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-
-        $credentials = [
-            'email' => $request['usuario'],
-            'senha' => $request['senha'],
-        ];
-        if(Auth::attempt($credentials)){
-            echo "funciona";
-        }else{
-            echo 'n funciona';
-        }; 
-
+       $user = new \App\Models\Usuario();
+       $find = $user->where('email', $request['usuario'])->first();
+       if($find){
+        if (Hash::check($request['senha'], $find['senha'])) 
+        {
+            //autorizando o login do usuário.
+            Auth::login($find);
+            echo "autorizado";
+        }
+       }
     }
 
     /**
@@ -122,8 +122,8 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        
     }
 }

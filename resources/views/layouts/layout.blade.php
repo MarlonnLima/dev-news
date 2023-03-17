@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    
     <title>@yield('title')</title>
 </head>
 <body>
@@ -38,16 +38,13 @@
                 <span class ="detalhe-hora texto-roxo"><?php echo date('H:i:s');?></span>
                 </div>
             </div>
-            <?php 
-            if(isset($_SESSION['nome_user'])):
-                echo "<span class = 'texto-branco'>Olá ". $_SESSION['nome_user'] ."</span>";
-                echo "<a class = 'texto-branco' href = 'php_action/logout.php'>Sair</a>";
-            else: 
-            ?>
+            @if(Auth::check())
+            <span class = 'texto-branco'>Olá {{auth()->user()->name}}</span>
+            <a class = 'texto-branco' href = '{{route('login.logout')}}'>Sair</a>
+            @else
                 <a class = 'texto-branco' href='{{route('site.login')}}'>Logue ou cadastre-se  <i class='fa-sharp fa-solid fa-user my-2'></i></a>
-            <?php
-            endif;
-            ?></a>
+            @endif
+           
         </div>
         
     </header>
@@ -77,5 +74,15 @@
     <script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/15f4dde997.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>
+      const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+    </script>
     </body>
     </html>

@@ -1,15 +1,24 @@
 @extends('layouts.layoutWithoutBanner')
 @section('title', 'Logue ou Cadastre-se')
 @section('conteudo')
-<form class ="formulario" action="{{route('site.store')}}" method = "POST" enctype = "multipart/form-data">
+
+<form class ="formulario" action="{{route('login.auth')}}" method = "POST" enctype = "multipart/form-data">
     @csrf
     <div class ="input-container">
-    <h1 class = "titulo">Entrar</h1>
+        <h1 class = "titulo">Entrar</h1>
+            @if($mensagem = Session::get('erro'))
+            {{$mensagem}}
+            @endif
+            @if($errors->any())
+            @foreach ($errors->all() as $erro)
+                {{$erro}}
+            @endforeach
+            @endif
         <div>
-            <input class = "fundo-roxo-40" type="text" name="usuario" id="titulo" placeholder = "  Usuario"required>
+            <input class = "fundo-roxo-40" type="text" name="email" id="titulo" placeholder = "  Email" >
         </div>
         <div>
-            <input class = "fundo-roxo-60" type="text" name="senha" id="categoria" placeholder = "  senha" required>
+            <input class = "fundo-roxo-60" type="text" name="password" id="categoria" placeholder = "  senha">
         </div>
     </div>            
 

@@ -8,6 +8,10 @@
     border: 0px;
 }
 
+body {
+    position: relative;
+}
+
 ul {
     height: inherit;
 }
@@ -15,19 +19,25 @@ ul {
 hr {
     margin: 10px 0px;
 }
+
 /* HELPERS */
 .fundo-roxo {
-    background-color: #8020cc;
+    background-color: #8020cc !important;
+    border: 1px solid #8020cc !important;
 }
+
 .fundo-roxo-40 {
     background-color: #8020cc40;
 }
+
 .fundo-roxo-60 {
     background-color: #8020cc60;
 }
-.fundo-roxo-80{
+
+.fundo-roxo-80 {
     background-color: #8020cc80;
 }
+
 .texto-roxo {
     color: #8020cc;
 }
@@ -44,7 +54,7 @@ hr {
     text-align: center;
 }
 
-.texto-justificado{
+.texto-justificado {
     text-align: justify;
 }
 
@@ -70,6 +80,17 @@ hr {
     text-decoration: none;
     transition: 0.5s;
     margin: 10px 0px;
+}   
+
+.botao-flutuante {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    position: fixed;
+    z-index: 900;
+    bottom: 100px !important;
+    right: 30px !important;
+    text-align: center;
 }
 
 .botao:hover {
@@ -91,11 +112,26 @@ hr {
     padding: 10px;
     transition: 0.5s;
 }
+.botoes-noticia button{
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 100%;
+    transition: 0.5s;
 
+
+}
+.botoes-noticia button:hover{
+    background-color: #8020cc;
+}
+.botoes-noticia button:hover i{
+    color: #fff;
+}
 .botoes-noticia a i:hover {
     color: #fff;
     background-color: #8020cc;
 }
+
 /* HEADER */
 
 .cabecalho {
@@ -226,11 +262,11 @@ input#busca:focus::placeholder {
 }
 
 /* NEWS PAGE */
-.news-img{
+.news-img {
     box-shadow: 10px 10px 10px lightblue;
 }
 
-/* FORMS */ 
+/* FORMS */
 
 .formulario {
     display: flex;
@@ -310,7 +346,8 @@ textarea#descricao:focus, input#titulo:focus, input#categoria:focus {
     display: flex;
     justify-content: center;
 }
-.troca-foto{
+
+.troca-foto {
     height: 300px;
     display: flex;
     justify-content: center;
@@ -319,9 +356,11 @@ textarea#descricao:focus, input#titulo:focus, input#categoria:focus {
     border-bottom-left-radius: 20px;
 
 }
-.foto{
+
+.foto {
     font-size: 166px;
 }
+
 /* MEDIA QUERIES */
 @media(max-width: 550px) {
     input#busca {

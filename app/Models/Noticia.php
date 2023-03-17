@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Noticia extends Model
 {
+    public $timestamps = false;
+
     use HasFactory;
 
     protected $table = "noticias";
+    protected $fillable = ['titulo', 'descricao', 'categoria', 'imagem'];
+
 }

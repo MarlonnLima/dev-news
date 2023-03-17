@@ -25,9 +25,14 @@ class NoticiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        
+        Noticia::create([
+            'titulo' => $request['titulo'],
+            'categoria' => $request['categoria'],
+            'descricao' => $request['descricao'],
+            'imagem' => 'teste'
+        ]);
     }
 
     /**
@@ -51,16 +56,20 @@ class NoticiaController extends Controller
     {
         //
     }
+    public function paraEditar($id){
+        $noticia = Noticia::where('id', $id)->first();
 
+        return view('site.editarNoticia', compact('noticia'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noticia $noticia)
+    public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -81,8 +90,9 @@ class NoticiaController extends Controller
      * @param  \App\Models\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Noticia $noticia)
+    public function destroy($id)
     {
-        //
+        Noticia::destroy($id);
+        return redirect()->back();
     }
 }
