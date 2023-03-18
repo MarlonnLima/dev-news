@@ -16,17 +16,18 @@
                 <textarea class = "fundo-roxo-80" name="descricao" id="descricao" cols="94" rows="6" placeholder = "  Descrição"></textarea>
             </div>
         </div>
-
+        
         <div class ="container-img">
-            <label id = "label-imagem" class = "texto-roxo" for="imagem">Inserir imagem  <i class="fa-solid fa-camera"></i>
-            <input type="file" name = "imagem" id = "imagem"> 
-             </label>
+            <label id = "label-imagem" class = "texto-roxo my-2" for="imagem">Inserir imagem  <i class="fa-solid fa-camera"></i>
+                <input type="file" name = "imagem" id = "imagem"> 
+            </label>
         </div>
-
+        <input type= "hidden" name = "id_user" value ="{{auth()->user()->id}}">
+        
         <div class ="area-buttons-cadastro">
             <button type = "submit" name = "btn-cadastrar" class ="botao texto-branco fundo-roxo buttons-cadastro">Cadastrar</button>
             <a class = "botao texto-branco buttons-cadastro fundo-roxo" href = "index.php">Noticias</a>
-         </div>
+        </div>
     </form>
 </div>
 </div>

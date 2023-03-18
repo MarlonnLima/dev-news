@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NoticiaController extends Controller
 {
@@ -27,12 +29,16 @@ class NoticiaController extends Controller
      */
     public function create(Request $request)
     {
-        Noticia::create([
-            'titulo' => $request['titulo'],
-            'categoria' => $request['categoria'],
-            'descricao' => $request['descricao'],
-            'imagem' => 'teste'
-        ]);
+        $noticia = $request->all();
+        
+        if($request->imagem) {
+            $noticia['imagem'] = $request->imagem->store('noticias');
+        }
+        $noticia['slug'] = Str::slug($request->titulo);
+        $noticia['id_user'] = (int)$request->id_user;
+        Noticia::create($noticia);
+
+        return redirect()->route('site.index');
     }
 
     /**
@@ -67,11 +73,35 @@ class NoticiaController extends Controller
      * @param  \App\Models\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        
+        Noticia::where('id', $request->id)->update([
+                'titulo' => $request->titulo,
+                'categoria' => $request->categoria,
+                'descricao' => $request->descricao
+            ]);
+        return redirect()->route('site.index');
     }
+    public function atualizarFoto($id){
+        return view('site.atualizarFoto', compact('id'));
 
+    }
+    public function AddNovaFoto(Request $request){
+        $paraDeletar = Noticia::find($request->id);   
+        $imagemParaDeletar = $paraDeletar->imagem; 
+        Storage::delete([$imagemParaDeletar]);
+
+        $noticia = $request->all();
+        if($request->imagem) {
+            $noticia['imagem'] = $request->imagem->store('noticias');
+        }
+        
+        Noticia::where('id', $request->id)->update([
+        'imagem' => $noticia['imagem'],
+        ]);
+        
+        return redirect()->route('site.index');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -92,6 +122,9 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
+        $noticia = Noticia::find($id);
+        $imagem = $noticia->imagem;
+        Storage::delete([$imagem]);
         Noticia::destroy($id);
         return redirect()->back();
     }

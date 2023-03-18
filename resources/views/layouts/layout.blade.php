@@ -24,6 +24,7 @@
             <div class ="container-data-hora texto-branco gap20">
                 <div>
                 <span><?php
+                date_default_timezone_set("America/Sao_Paulo");
                 $semana = array(
                     'Sun' => 'Domingo ', 
                     'Mon' => 'Segunda-Feira ',

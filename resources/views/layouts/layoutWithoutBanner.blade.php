@@ -21,6 +21,7 @@
             <div class ="container-data-hora texto-branco gap20">
                 <div>
                     <span><?php
+                    date_default_timezone_set("America/Sao_Paulo");
                 $semana = array(
                     'Sun' => 'Domingo ', 
                     'Mon' => 'Segunda-Feira ',
@@ -35,16 +36,12 @@
                 <span class ="detalhe-hora texto-roxo"><?php echo date('H:i:s');?></span>
             </div>
         </div>
-        <?php 
-            if(isset($_SESSION['nome_user'])):
-            echo "<span class = 'texto-branco'>Olá ". $_SESSION['nome_user'] ."</span>";
-            echo "<a class = 'texto-branco' href = 'php_action/logout.php'>Sair</a>";
-        else: 
-        ?>
+        @if(Auth::check())
+            <span class = 'texto-branco'>Olá {{auth()->user()->name}}</span>
+            <a class = 'texto-branco' href = '{{route('login.logout')}}'>Sair</a>
+            @else
                 <a class = 'texto-branco' href='{{route('site.login')}}'>Logue ou cadastre-se  <i class='fa-sharp fa-solid fa-user my-2'></i></a>
-                <?php
-            endif;
-            ?></a>
+            @endif
         </div>
         
     </header>
@@ -59,9 +56,8 @@
     <script src="{{asset('js/tinymce/tinymce.js')}}"></script>
     <script>
         tinymce.init({
-          selector: 'textarea#descricao', // Replace this CSS selector to match the placeholder element for TinyMCE
-          plugins: 'code table lists',
-          toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+            menubar: false,
+            selector: 'textarea#descricao', // Replace this CSS selector to match the placeholder element for TinyMCE
         });
       </script>
 

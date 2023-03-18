@@ -21,6 +21,9 @@ hr {
 }
 
 /* HELPERS */
+.tamanho-icone{
+    font-size: 18px;
+}
 .fundo-roxo {
     background-color: #8020cc !important;
     border: 1px solid #8020cc !important;

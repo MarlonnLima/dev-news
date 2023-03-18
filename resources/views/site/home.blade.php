@@ -2,12 +2,12 @@
 @section('title', 'Home')
 @section('conteudo')
 @if(Auth::check() && auth()->user()->isAdmin == 1)
-<a class = 'botao fundo-roxo texto-branco botao-flutuante' title="Adicionar" href='{{route('site.adicionarNoticia')}}'><i class="fa-solid fa-plus"></i></a>
+<a class = 'botao fundo-roxo texto-branco botao-flutuante' title="Adicionar" href='{{route('site.adicionarNoticia')}}'><i class="fa-solid fa-plus tamanho-icone"></i></a>
 
 @endif
 
-<h1 class ="titulo">Noticias</h1>
-<div class = "row mx-4">
+<h1 class ="titulo my-4 mx-0">Noticias</h1>
+<div class = "row mx-4 justify-content-center">
 @foreach ($noticias as $noticia)
 
 <!-- Modal Delete-->
@@ -32,7 +32,7 @@
 
 
 <div class="card col-4 mx-3 my-2" style="width: 18rem;">
-  <img class="card-img-top my-2" src="/uploads/{{$noticia->imagem}}" alt="Card image cap">
+  <img class="card-img-top my-2" src="/storage/{{$noticia->imagem}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{$noticia->titulo}}</h5>
     <span class ="categoria-noticia">{{$noticia->categoria}}</span>
@@ -41,8 +41,8 @@
     @if(Auth::check() && auth()->user()->isAdmin == 1)
     <hr>
     <div class ="botoes-noticia">
-      <a class = "texto-roxo" href = "{{route('site.editarNoticia', $noticia->id)}}"><i class="fa-solid fa-pencil texto-roxo"></i></a>
-      <a class = "texto-roxo" href = "atualizarFoto.php?id={{$noticia->id}}"><i class="fa-solid fa-camera-rotate texto-roxo"></i></a>
+      <a class = "texto-roxo" href = "{{route('noticia.editarNoticia', $noticia->id)}}"><i class="fa-solid fa-pencil texto-roxo"></i></a>
+      <a class = "texto-roxo" href = "{{route('noticia.atualizarFoto', $noticia->id)}}"><i class="fa-solid fa-camera-rotate texto-roxo"></i></a>
       <button type="button" class="texto-roxo" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$noticia->id}}">
         <i class="fa-solid fa-trash texto-roxo"></i>
       </button>
@@ -57,7 +57,7 @@
 </div>
 
 
-<div class = "d-flex justify-content-center">
+<div class = "d-flex justify-content-center my-3">
   <div>
   {{$noticias->links()}}
   </div>

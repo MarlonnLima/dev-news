@@ -3,7 +3,8 @@
 @section('conteudo')
 
 @if(Auth::check() && auth()->user()->isAdmin == 1)
-<form class ="formulario" action="php_action/update.php" method = "POST" enctype = "multipart/form-data">
+<form class ="formulario" action="{{route('noticia.enviarEdicao')}}" method = "POST" enctype = "multipart/form-data">
+    @csrf
     <h1 class = "titulo">Cadastrar Noticia</h1>
         <div class ="input-container">
             <div>

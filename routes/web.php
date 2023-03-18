@@ -30,7 +30,9 @@ Route::view('/adicionar', 'site.adicionar')->name('site.adicionarNoticia');
 Route::post('/addnoticia', [NoticiaController::class, 'create'])->name('noticia.cadastrar');
 Route::get('/noticia/{id}', [SiteController::class, 'details'])->name('site.details');
 
-Route::get('noticia/editar/{id}', [NoticiaController::class, 'paraEditar'])->name('site.editarNoticia');
-
+Route::get('/noticia/editar/{id}', [NoticiaController::class, 'paraEditar'])->name('noticia.editarNoticia');
+Route::post('/noticia/salvaredicao', [NoticiaController::class, 'edit'])->name('noticia.enviarEdicao');
+Route::get('/noticia/atualizar/foto/{id}', [NoticiaController::class, 'atualizarFoto'])->name('noticia.atualizarFoto');
+Route::post('noticia/addnovafoto', [NoticiaController::class, 'addNovaFoto'])->name('noticia.addnovafoto');
 
 Route::get('/noticia/delete/{id}' , [NoticiaController::class, 'destroy'])->name('site.deleteNoticia');
