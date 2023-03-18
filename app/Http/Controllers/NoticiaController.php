@@ -102,6 +102,14 @@ class NoticiaController extends Controller
         
         return redirect()->route('site.index');
     }
+
+    public function buscar(Request $request){
+        $noticias = Noticia::where('titulo', 'LIKE', '%' . $request['busca'] . '%')
+        ->orWhere('categoria', 'LIKE', '%' . $request['busca'] . '%')
+        ->get();
+        
+        return view('site.busca', compact('noticias'));
+    }
     /**
      * Update the specified resource in storage.
      *

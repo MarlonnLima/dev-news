@@ -34,5 +34,7 @@ Route::get('/noticia/editar/{id}', [NoticiaController::class, 'paraEditar'])->na
 Route::post('/noticia/salvaredicao', [NoticiaController::class, 'edit'])->name('noticia.enviarEdicao');
 Route::get('/noticia/atualizar/foto/{id}', [NoticiaController::class, 'atualizarFoto'])->name('noticia.atualizarFoto');
 Route::post('noticia/addnovafoto', [NoticiaController::class, 'addNovaFoto'])->name('noticia.addnovafoto');
+Route::post('/noticia/buscar/', [NoticiaController::class, 'buscar'])->name('noticia.procurar');
+
 
 Route::get('/noticia/delete/{id}' , [NoticiaController::class, 'destroy'])->name('site.deleteNoticia');

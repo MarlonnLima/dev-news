@@ -1,14 +1,14 @@
 @extends('layouts.layout')
-@section('title', 'Home')
+@section('title', 'Página de Busca')
 @section('conteudo')
 @if(Auth::check() && auth()->user()->isAdmin == 1)
 <a class = 'botao fundo-roxo texto-branco botao-flutuante' title="Adicionar" href='{{route('site.adicionarNoticia')}}'><i class="fa-solid fa-plus tamanho-icone"></i></a>
+
 @endif
 
-<h1 class ="titulo my-4 mx-0">Noticias</h1>
+<h1 class ="titulo my-4 mx-0">Resultados</h1>
 <div class = "row mx-4 justify-content-center">
 @foreach ($noticias as $noticia)
-
 <!-- Modal Delete-->
 <div class="modal fade" id="staticBackdrop{{$noticia->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -56,9 +56,5 @@
 </div>
 
 
-<div class = "d-flex justify-content-center my-3">
-  <div>
-  {{$noticias->links()}}
-  </div>
-</div>
+
 @endsection

@@ -19,14 +19,13 @@ class SiteController extends Controller
     public function index()
     {
         $noticias = Noticia::paginate(8);
-        
         return view('site.home', compact('noticias'));
     }
 
     public function details($id)
     {
         $noticia = Noticia::where('id', $id)->first();
-
+        
         return view('site.details', compact('noticia'));
 
     }

@@ -14,10 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <title>@yield('title')</title>
 </head>
 <body>
+
+    <div id ="hello-react">
+    </div>
     <header>
         <div class = "cabecalho fundo-roxo">
             <a class ="texto-branco"href = "{{route('site.index')}}"><h2>Dev News</h2></a>
@@ -59,7 +63,8 @@
         <nav class ="nav-bar fundo-roxo">
         <ul>
             <li class ="flex">
-                <form class = "form-pesquisa gap20" action = "search.php"method = "GET">
+                <form class = "form-pesquisa gap20" action = "{{route('noticia.procurar')}}"method = "POST">
+                    @csrf
                     <input type="text" class ="texto-branco" name="busca" id="busca" placeholder="  Busque por categoria ou título" required>
                     <button type = "submit" class = "btn-pesquisar fundo-roxo texto-branco" name = "buscar-no-banco"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
