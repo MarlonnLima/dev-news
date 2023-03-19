@@ -33,7 +33,7 @@
 </div>
 @else
 @php
- redirect()->route('site.index')
+ return redirect()->route('site.index')
 @endphp
 @endif
 @endsection
