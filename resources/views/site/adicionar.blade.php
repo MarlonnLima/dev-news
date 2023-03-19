@@ -32,6 +32,6 @@
 </div>
 </div>
 @else
- {{route('site.index')}}
+ {{redirect()->route('site.index')}}
 @endif
 @endsection
