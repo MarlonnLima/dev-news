@@ -33,7 +33,7 @@
 </div>
 @else
 @php
- header("location: devnews.marlondev.com.br");
+ header("location: /");
 @endphp
 @endif
 @endsection
