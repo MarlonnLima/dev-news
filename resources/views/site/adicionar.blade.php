@@ -33,7 +33,7 @@
 </div>
 @else
 @php
- return redirect()->route('site.index')
+ header("location: devnews.marlondev.com.br");
 @endphp
 @endif
 @endsection
