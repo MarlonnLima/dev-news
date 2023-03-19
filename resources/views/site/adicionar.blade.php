@@ -32,6 +32,6 @@
 </div>
 </div>
 @else
- {{route('site.home')}}
+ {{route('site.index')}}
 @endif
 @endsection

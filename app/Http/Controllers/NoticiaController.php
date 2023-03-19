@@ -108,7 +108,11 @@ class NoticiaController extends Controller
         ->orWhere('categoria', 'LIKE', '%' . $request['busca'] . '%')
         ->get();
         
+        if($noticias->isEmpty()){
+            return view('site.busca');
+        }else{
         return view('site.busca', compact('noticias'));
+        }
     }
     /**
      * Update the specified resource in storage.

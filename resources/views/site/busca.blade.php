@@ -8,6 +8,10 @@
 
 <h1 class ="titulo my-4 mx-0">Resultados</h1>
 <div class = "row mx-4 justify-content-center">
+@if(!isset($noticias))
+<h2 class ="text-center">Não foi possível encontrar nada com esses parâmetros</h2>
+@endif
+@if(isset($noticias))
 @foreach ($noticias as $noticia)
 <!-- Modal Delete-->
 <div class="modal fade" id="staticBackdrop{{$noticia->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -52,7 +56,7 @@
 </div>
         
 @endforeach
-
+@endif
 </div>
 
 

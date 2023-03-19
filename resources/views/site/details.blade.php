@@ -2,9 +2,8 @@
 @section('title', 'Detalhes noticia')
 @section('conteudo')
 
-{{dd($noticia)}};
-<div class = "container text-center my-5">
-<img class = "w-50 news-img"src = "/storage/{{$noticia->imagem}}">
+<div class = "container text-center my-5 border">
+<img class = "w-100 news-img my-2"src = "/storage/{{$noticia->imagem}}">
 <h1 class ="text-danger mt-5">{{$noticia->titulo}}</h1>
 <span class ="text-secondary">{{$noticia->categoria}}</span>
 <div>   

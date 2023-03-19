@@ -5,14 +5,17 @@
    @csrf
     <div class ="input-container">
     <h1 class = "titulo">Cadastrar</h1>
+    @if(isset($erro))
+        {{$erro}}
+    @endif
         <div>
             <input class = "fundo-roxo-40" type="text" name="name" id="titulo" placeholder = "  Nome" required>
         </div>
         <div>
-            <input class = "fundo-roxo-60" type="text" name="email" id="titulo" placeholder = "  Email" required>
+            <input class = "fundo-roxo-60" type="email" name="email" id="titulo" placeholder = "  Email" required>
         </div>
         <div>
-            <input class = "fundo-roxo-80" type="text" name="password" id="categoria" placeholder = "  senha" required>
+            <input class = "fundo-roxo-80" type="password" name="password" id="categoria" placeholder = "  senha" required>
         </div>
     </div>            
 

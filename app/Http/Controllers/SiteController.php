@@ -42,12 +42,18 @@ class SiteController extends Controller
 
     public function criarUsuario(Request $request)
     {
+        $VerificarSeExisteOEmailNoBanco = User::where('email', $request['email'])->first();
+        if(isset($VerificarSeExisteOEmailNoBanco['email'])){
+            $erro = "Já existe uma conta com esse email";
+            return view('site.register', compact('erro'));
+        }else{
         User::create([
-        'name' =>  $request['name'],
-        'email' =>  $request['email'],
-        'password' =>  bcrypt($request['password']),
-        'isAdmin' => 0,
+            'name' =>  $request['name'],
+            'email' =>  $request['email'],
+            'password' =>  bcrypt($request['password']),
+            'isAdmin' => 0,
         ]);
+        }
 
         return redirect()->route('site.login');
     }

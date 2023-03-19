@@ -18,7 +18,7 @@
             <input class = "fundo-roxo-40" type="text" name="email" id="titulo" placeholder = "  Email" >
         </div>
         <div>
-            <input class = "fundo-roxo-60" type="text" name="password" id="categoria" placeholder = "  senha">
+            <input class = "fundo-roxo-60" type="password" name="password" id="categoria" placeholder = "  senha">
         </div>
     </div>            
 
