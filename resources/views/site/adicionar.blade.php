@@ -32,6 +32,8 @@
 </div>
 </div>
 @else
- {{redirect()->route('site.index')}}
+@php
+ redirect()->route('site.index')
+@endphp
 @endif
 @endsection
