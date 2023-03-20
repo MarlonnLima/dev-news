@@ -26,7 +26,7 @@ Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout' ])->name('login.logout');
 Route::post('/criarusuario', [SiteController::class, 'criarUsuario'])->name('site.criarUsuario');
 Route::get('/cadastrar', [SiteController::class, 'cadastrar'])->name('site.cadastrar');
-Route::view('/adicionar', 'site.adicionar')->name('site.adicionarNoticia');
+Route::get('/adicionar', [NoticiaController::class, 'adicionar'])->name('site.adicionarNoticia');
 Route::post('/addnoticia', [NoticiaController::class, 'create'])->name('noticia.cadastrar');
 Route::get('/noticia/{id}', [SiteController::class, 'details'])->name('site.details');
 

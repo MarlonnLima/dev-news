@@ -21,6 +21,14 @@ class NoticiaController extends Controller
         return view('home', compact('noticias'));
     }
 
+    public function adicionar()
+    {
+        if(auth()->check() && auth()->user()->isAdmin == 1){
+            return view('site.adicionar');
+        }else{
+            return redirect()->back();
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,6 +37,7 @@ class NoticiaController extends Controller
      */
     public function create(Request $request)
     {
+        if(auth()->check() && auth()->user()->isAdmin == 1){
         $noticia = $request->all();
         
         if($request->imagem) {
@@ -39,6 +48,9 @@ class NoticiaController extends Controller
         Noticia::create($noticia);
 
         return redirect()->route('site.index');
+        }else{
+            return redirect()->route('site.index');
+        }
     }
 
     /**
@@ -63,9 +75,13 @@ class NoticiaController extends Controller
         //
     }
     public function paraEditar($id){
+        if(auth()->check() && auth()->user()->isAdmin == 1){
         $noticia = Noticia::where('id', $id)->first();
 
         return view('site.editarNoticia', compact('noticia'));
+        }else{
+            return redirect()->back();
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -83,8 +99,11 @@ class NoticiaController extends Controller
         return redirect()->route('site.index');
     }
     public function atualizarFoto($id){
+        if(auth()->check() && auth()->user()->isAdmin == 1){
         return view('site.atualizarFoto', compact('id'));
-
+        }else{
+            return redirect()->back();
+        }
     }
     public function AddNovaFoto(Request $request){
         $paraDeletar = Noticia::find($request->id);   
@@ -134,10 +153,14 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->check() && auth()->user()->isAdmin == 1){
         $noticia = Noticia::find($id);
         $imagem = $noticia->imagem;
         Storage::delete([$imagem]);
         Noticia::destroy($id);
         return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }

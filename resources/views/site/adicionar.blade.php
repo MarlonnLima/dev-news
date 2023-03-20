@@ -31,9 +31,5 @@
     </form>
 </div>
 </div>
-@else
-@php
- header("location: /");
-@endphp
 @endif
 @endsection
